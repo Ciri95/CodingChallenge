@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DatasouceObject {
+public class IpRange {
 
     private List<PrefixValue> prefixes;
     private List<Ipv6PrefixValue> ipv6_prefixes;
 
-    public DatasouceObject(){
+    public IpRange(){
 
     }
 
@@ -32,10 +32,10 @@ public class DatasouceObject {
 
     @Override
     public String toString() {
-        return "{" +
-                "prefixes=" + prefixes +
-                ", ipv6_prefixes=" + ipv6_prefixes +
-                '}';
+        return "" +
+                prefixes +
+                ipv6_prefixes +
+                "";
     }
 
 }
