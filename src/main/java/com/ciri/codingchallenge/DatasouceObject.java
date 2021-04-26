@@ -32,8 +32,8 @@ public class DatasouceObject {
 
     @Override
     public String toString() {
-        return "Test{" +
-                "prefixes='" + prefixes +
+        return "{" +
+                "prefixes=" + prefixes +
                 ", ipv6_prefixes=" + ipv6_prefixes +
                 '}';
     }

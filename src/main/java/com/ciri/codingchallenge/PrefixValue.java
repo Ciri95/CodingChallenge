@@ -21,7 +21,7 @@ public class PrefixValue extends AbstractPrefixValue {
 
     @Override
     public String toString() {
-        return "Prefixes{" +
+        return "{" +
                 "ip_prefix=" + ip_prefix +
                 ", region=" + getRegion() +
                 ", service=" + getService() +

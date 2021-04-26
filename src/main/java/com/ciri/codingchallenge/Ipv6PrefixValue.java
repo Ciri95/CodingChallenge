@@ -21,11 +21,11 @@ public class Ipv6PrefixValue extends AbstractPrefixValue {
 
     @Override
     public String toString() {
-        return "Ipv6PrefixValue{" +
+        return "{" +
                 "ipv6_prefix=" + ipv6_prefix +
                 ", region=" + getRegion() +
                 ", service=" + getService() +
-                ", network_border_group='" + getNetwork_border_group() + '\'' +
+                ", network_border_group='" + getNetwork_border_group() +
                 '}';
     }
 }
