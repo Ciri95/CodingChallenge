@@ -47,8 +47,8 @@ public class CodingChallengeController {
                 .collect(Collectors.toList());
         if (region!=null && !region.isEmpty()) {
             for (RegionShortcut regionShortcut : RegionShortcut.values()) {
-                if (region.equals(regionShortcut.name())) {
-                    if("ALL".equals(region)) {
+                if (region.equalsIgnoreCase(regionShortcut.name())) {
+                    if("ALL".equalsIgnoreCase(region)) {
                         return prefixValues.stream().map(Objects::toString).collect(Collectors.joining("\n"));
                     }
                     List<AbstractPrefixValue> result = prefixValues.stream().filter(r -> r.getRegion().toUpperCase(Locale.ROOT).startsWith(region)).collect(Collectors.toList());
