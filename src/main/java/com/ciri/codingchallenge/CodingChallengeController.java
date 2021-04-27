@@ -11,13 +11,15 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 //@RequestMapping(path = "?region=EU" für den Filter
 public class CodingChallengeController {
 
-    enum RegionShortcut {
+    public enum RegionShortcut {
         EU,
         US,
         AP,
@@ -41,16 +43,16 @@ public class CodingChallengeController {
         assert ipRange != null;
         List<PrefixValue> prefixes = ipRange.getPrefixes();
         List<Ipv6PrefixValue> ipv6prefixes = ipRange.getIpv6_prefixes();
-        if (!region.isEmpty()) {
+        List<AbstractPrefixValue> prefixValues = Stream.concat(prefixes.stream(), ipv6prefixes.stream())
+                .collect(Collectors.toList());
+        if (region!=null && !region.isEmpty()) {
             for (RegionShortcut regionShortcut : RegionShortcut.values()) {
-                if (region.equals(regionShortcut.name()) && !region.equals("ALL")) {
-                    List<AbstractPrefixValue> result = new ArrayList<>();
-                    result.addAll(prefixes.stream().filter(r -> r.getRegion().toUpperCase(Locale.ROOT).startsWith(region)).collect(Collectors.toList()));
-                    result.addAll(ipv6prefixes.stream().filter(r -> r.getRegion().toUpperCase(Locale.ROOT).startsWith(region)).collect(Collectors.toList()));
+                if (region.equals(regionShortcut.name())) {
+                    if("ALL".equals(region)) {
+                        return prefixValues.stream().map(Objects::toString).collect(Collectors.joining("\n"));
+                    }
+                    List<AbstractPrefixValue> result = prefixValues.stream().filter(r -> r.getRegion().toUpperCase(Locale.ROOT).startsWith(region)).collect(Collectors.toList());
                     return result.stream().map(Object::toString).collect(Collectors.joining("\n"));
-                } else if (region.equals(regionShortcut.name())) {
-                    //TODO single line for each result value
-                    return ipRange.toString();
                 }
             }
         }

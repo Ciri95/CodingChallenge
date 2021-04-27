@@ -10,7 +10,7 @@ public class IpRange {
     private List<PrefixValue> prefixes;
     private List<Ipv6PrefixValue> ipv6_prefixes;
 
-    public IpRange(){
+    public IpRange() {
 
     }
 
