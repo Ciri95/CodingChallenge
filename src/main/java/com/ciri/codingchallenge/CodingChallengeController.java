@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -40,7 +39,7 @@ public class CodingChallengeController {
         IpRange ipRange = restTemplate.getForObject(
                 "https://ip-ranges.amazonaws.com/ip-ranges.json", IpRange.class);
 
-        assert ipRange != null;
+        Objects.requireNonNull(ipRange);
         List<PrefixValue> prefixes = ipRange.getPrefixes();
         List<Ipv6PrefixValue> ipv6prefixes = ipRange.getIpv6_prefixes();
         List<AbstractPrefixValue> prefixValues = Stream.concat(prefixes.stream(), ipv6prefixes.stream())

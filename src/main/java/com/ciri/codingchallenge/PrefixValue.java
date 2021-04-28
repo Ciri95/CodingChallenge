@@ -25,7 +25,7 @@ public class PrefixValue extends AbstractPrefixValue {
                 "ip_prefix=" + ip_prefix +
                 ", region=" + getRegion() +
                 ", service=" + getService() +
-                ", network_border_group='" + getNetwork_border_group() +
+                ", network_border_group=" + getNetwork_border_group() +
                 '}';
     }
 
