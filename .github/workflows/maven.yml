@@ -23,8 +23,8 @@ jobs:
         distribution: 'adopt'
     - name: Docker Login
       env: 
-        DOCKERHUB_USER: ${{ DOCKERHUB_USER }}
-        DOCKERHUB_PASSWORD: ${{ DOCKERHUB_PASSWORD }}
+        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       run: docker login -u DOCKERHUB_USER -p DOCKERHUB_PASSWORD
     - name: Test with Maven
       run: mvn -B verify --file pom.xml
